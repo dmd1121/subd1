@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: My API
+  version: 1.0.0
+paths:
+  /api/customers:
+    get:
+      summary: Get all customers
+      responses:
+        '200':
+          description: A list of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+    post:
+      summary: Create a new customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: Customer created
+  /api/meds:
+    get:
+      summary: Get all medications
+      responses:
+        '200':
+          description: A list of medications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Med'
+    post:
+      summary: Create a new medication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Med'
+      responses:
+        '201':
+          description: Medication created
+  /api/orders:
+    get:
+      summary: Get all orders
+      responses:
+        '200':
+          description: A list of orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+    post:
+      summary: Create a new order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Order created
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        cust_id:
+          type: string
+        cust_name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    Med:
+      type: object
+      properties:
+        med_id:
+          type: string
+        med_name:
+          type: string
+        manufacturer:
+          type: string
+        price:
+          type: number
+        prescription:
+          type: boolean
+    Order:
+      type: object
+      properties:
+        med_id:
+          type: string
+        cust_id:
+          type: string
+        date:
+          type: string
+          format: date-time
